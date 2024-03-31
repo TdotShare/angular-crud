@@ -1,0 +1,32 @@
+<div style="padding: 10px;">
+
+  <p>user-create works!</p>
+
+  <form class="example-form" [formGroup]="createUserData" (ngSubmit)="onSubmit()" enctype="multipart/form-data"  >
+
+    <mat-form-field>
+      <mat-label>UserName</mat-label>
+      <input matInput formControlName="user_username" placeholder="UserName">
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="user_password" placeholder="Password">
+    </mat-form-field>
+
+
+    <input type="file" (change)="onFileSelected($event)" >
+
+    <div style="padding-bottom: 1%;"> </div>
+
+
+    <button type="submit" mat-flat-button color="primary">Create Data</button>
+
+
+  </form>
+
+
+
+
+</div>
