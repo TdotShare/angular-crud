@@ -6,21 +6,23 @@ import { UserRoutingModule } from './user-routing.module';
 import { MaterialModule } from 'src/app/core/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { UserService } from 'src/app/core/services/user.service';
 
 @NgModule({
   declarations: [
     UserListComponent,
     UserCreateComponent,
-
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     MaterialModule,
     HttpClientModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
+  providers: [
+    UserService
+  ],
 })
 export class UserModule { }
 
