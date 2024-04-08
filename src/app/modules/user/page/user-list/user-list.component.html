@@ -1,42 +1,58 @@
-<div style="padding: 10px;">
+<div style="padding-top: 2%;"></div>
 
-  <p>user-list works!</p>
+<div class="container">
 
-  <button (click)="btnGoToPageCreateData()" mat-flat-button color="primary">Create Data</button>
+
+  <h1>รายการข้อมูล</h1>
+
+  <div class="row">
+    <div class="col">
+      <button (click)="btnGoToPageCreateData()" class="btn btn-primary">Create Data</button>
+    </div>
+  </div>
 
   <div style="padding-bottom: 1%;"></div>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <div class="row">
+    <div class="col-5"></div>
+    <div class="col-5">
+      <input type="text" [(ngModel)]="searchVal" class="form-control" placeholder="Search" >
+    </div>
+    <div style="text-align: end; align-items: end;" class="col">
+        <button (click)="onSearch()"  class="btn btn-success mx-2">Search</button>
+        <button (click)="onClear()"  class="btn btn-primary">Clear</button>
+    </div>
+  </div>
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="user_id">
-      <th mat-header-cell *matHeaderCellDef> No.</th>
-      <td mat-cell *matCellDef="let element"> {{element.user_id}} </td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="user_username">
-      <th mat-header-cell *matHeaderCellDef> Username </th>
-      <td mat-cell *matCellDef="let element"> {{element.user_username}} </td>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="user_password">
-      <th mat-header-cell *matHeaderCellDef> Password </th>
-      <td mat-cell *matCellDef="let element"> {{element.user_password}} </td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="attachFileName">
-      <th mat-header-cell *matHeaderCellDef> ไฟล์แนบ </th>
-      <td mat-cell *matCellDef="let element"> {{element.attachFileName}}</td>
-    </ng-container>
+  <div style="padding-bottom: 1%;"></div>
 
 
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col">Username</th>
+        <th scope="col">Password</th>
+        <th scope="col">ไฟล์แนบ</th>
+      </tr>
+    </thead>
+
+
+    <tbody>
+
+      <tr *ngFor="let element of dataSource | slice: (page-1) * rowsPerPage : page * rowsPerPage" >
+        <th scope="row">{{element.user_id}}</th>
+        <td>{{element.user_username}}</td>
+        <td>{{element.user_password}}</td>
+        <td>{{element.attachFileName}}</td>
+      </tr>
+
+    </tbody>
 
   </table>
+
+  <ngb-pagination [(page)]="page" [pageSize]="rowsPerPage" [collectionSize]="dataSource.length"></ngb-pagination>
+
 
 </div>

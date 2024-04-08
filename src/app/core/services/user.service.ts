@@ -48,7 +48,7 @@ export class UserService {
   }
 
   getSearchUser(data: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/GetSearchUser`, JSON.stringify(data), this.httpOptions).pipe(retry(1), catchError(this.handleError));
+    return this.http.post<GetUserAll[]>(`${this.apiUrl}/GetSearchUser`, JSON.stringify(data), this.httpOptions).pipe(retry(1), catchError(this.handleError));
   }
 
   uploadAttachedUser(data: any): Observable<ResponseMessageOutput> {

@@ -13,13 +13,33 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent {
+
   displayedColumns: string[] = ['user_id', 'user_username', 'user_password', 'attachFileName'];
   dataSource: GetUserAll[] = [];
+
+  page = 0
+  rowsPerPage = 10
+  searchVal = ""
 
   constructor(
     private router: Router,
     private userService: UserService
   ) {
+    this.getUserAll()
+  }
+
+  onSearch(){
+
+    let request = { searchUser : this.searchVal}
+
+    this.userService.getSearchUser(request).subscribe((data) => {
+      this.dataSource = data;
+    })
+
+  }
+
+  onClear(){
+    this.searchVal = ""
     this.getUserAll()
   }
 
@@ -33,6 +53,8 @@ export class UserListComponent {
   btnGoToPageCreateData(): void {
     this.router.navigate(['user/userCreate']);
   }
+
+
 
 
 }

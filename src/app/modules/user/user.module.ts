@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/app/core/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from 'src/app/core/services/user.service';
+import { BootstrapModule } from 'src/app/core/theme/bootstrap.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { UserService } from 'src/app/core/services/user.service';
     CommonModule,
     UserRoutingModule,
     MaterialModule,
+    BootstrapModule,
     HttpClientModule,
     ReactiveFormsModule,
   ],
