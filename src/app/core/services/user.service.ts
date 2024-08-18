@@ -39,12 +39,12 @@ export class UserService {
     return this.http.post<any>(`${this.apiUrl}/UpdateUser`, JSON.stringify(data), this.httpOptions).pipe(retry(1), catchError(this.handleError));
   }
 
-  deleteUser(id: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/DeleteUser/${id}`).pipe(retry(1), catchError(this.handleError));
+  deleteUser(id: string): Observable<ResponseMessageOutput> {
+    return this.http.get<ResponseMessageOutput>(`${this.apiUrl}/DeleteUser/${id}`).pipe(retry(1), catchError(this.handleError));
   }
 
-  deleteUploadAttachedUser(id: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/DeleteUploadAttachedUser/${id}`).pipe(retry(1), catchError(this.handleError));
+  deleteUploadAttachedUser(id: string): Observable<ResponseMessageOutput> {
+    return this.http.get<ResponseMessageOutput>(`${this.apiUrl}/DeleteUploadAttachedUser/${id}`).pipe(retry(1), catchError(this.handleError));
   }
 
   getSearchUser(data: any): Observable<any> {

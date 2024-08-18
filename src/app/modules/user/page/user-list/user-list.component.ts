@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators'; // Import map operator from RxJS
 import { GetUserAll } from 'src/app/core/parameters/user/getUserAll';
 import { UserService } from 'src/app/core/services/user.service';
-
+import Swal from 'sweetalert2';
 
 
 
@@ -28,9 +28,9 @@ export class UserListComponent {
     this.getUserAll()
   }
 
-  onSearch(){
+  onSearch() {
 
-    let request = { searchUser : this.searchVal}
+    let request = { searchUser: this.searchVal }
 
     this.userService.getSearchUser(request).subscribe((data) => {
       this.dataSource = data;
@@ -38,7 +38,7 @@ export class UserListComponent {
 
   }
 
-  onClear(){
+  onClear() {
     this.searchVal = ""
     this.getUserAll()
   }
@@ -50,11 +50,20 @@ export class UserListComponent {
     });
   }
 
+  btnDelete(userId: string) {
+    this.userService.deleteUser(userId).subscribe((r) => {
+      if (r.bypass) {
+        Swal.fire({ text: `ลบข้อมูลเรียบร้อย !`, icon: `success` })
+
+        this.getUserAll()
+
+      } else {
+        Swal.fire({ text: `ไม่สามารถเพิ่มข้อมูลผู้ใช้งานได้ !`, icon: `error` })
+      }
+    })
+  }
+
   btnGoToPageCreateData(): void {
     this.router.navigate(['user/userCreate']);
   }
-
-
-
-
 }
